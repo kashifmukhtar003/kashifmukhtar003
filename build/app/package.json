@@ -1,0 +1,27 @@
+{
+  "name": "dchp",
+  "productName": "dchp",
+  "version": "0.0.1",
+  "description": "DCHP based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "main": "./dist/main/main.js",
+  "author": {
+    "name": "CinemaTaztic",
+    "email": "dev@cinemataztic.com",
+    "url": "https://github.com/cinemataztic/dch-p"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r ../../.erb/scripts/babel-register.js ../../.erb/scripts/electron-rebuild.js",
+    "link-modules": "node -r ../../.erb/scripts/babel-register.js ../../.erb/scripts/link-modules.js",
+    "postinstall": "yarn electron-rebuild && yarn link-modules",
+    "package-linux": "electron-packager .  dchp --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "copy-scripts":"cp -r ../../scripts release-builds/dchp-linux-x64",
+    "create-debian-installer":"electron-installer-debian --src release-builds/dchp-linux-x64/ --dest release-builds/installers/ --arch amd64 --config config.json",
+    "copy-build-files":"cp -r release-builds/dchp-linux-x64/* dchp/usr/lib/dchp",
+    "create-package":"dpkg-deb --build --root-owner-group dchp",
+    "build:linux":"yarn package-linux && yarn copy-scripts && yarn create-debian-installer"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "realm": "^10.6.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "dest": "release-builds/installers/",
+    "icon": "../../assets/icons/1024x1024.png",
+    "scripts": {
+        "postinst": "../../scripts/dchp-postinstall.sh"
+    }
+}

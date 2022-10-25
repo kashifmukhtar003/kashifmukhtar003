@@ -1,0 +1,17 @@
+[Unit]
+Description= Systemd Daemon for dchp service
+# Systemd unit file path /etc/systemd/system/dchp.service
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/dchp
+WorkingDirectory=/usr/lib/dchp
+ExecStart=/usr/bin/dchp --no-sandbox
+Restart=always
+RestartSec=10s
+StartLimitBurst=29
+StartLimitInterval=10min
+StartLimitAction=reboot
+User=player
+PermissionsStartOnly=true
+[Install]
+WantedBy=multi-user.target
