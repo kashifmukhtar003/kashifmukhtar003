@@ -33,6 +33,8 @@ jobs:
         run:  echo "MAIN_URL:${{ secrets.MAIN_URL }}" >> scripts/.env
       - name: Add API Version 
         run:  echo "API_VERSION:${{ secrets.API_VERSION }}" >> scripts/.env
+      - name: Add Base URL 
+        run:  echo "BASE_URL:${{ secrets.BASE_URL }}" >> scripts/.env
       - name: Add Market Slug        
         run: echo "MARKET_SLUG:${{ secrets.MARKET_SLUG }}" >> scripts/.env
       - name: Add User Agent
