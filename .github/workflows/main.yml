@@ -28,27 +28,27 @@ jobs:
       - name: create .env file
         run: touch scripts/.env
       - name: Add Enviornment veriable
-        run:  echo "NODE_ENV:${{ secrets.NODE_ENV }}"  >> scripts/.env
+        run:  echo "NODE_ENV=${{ secrets.NODE_ENV }}"  >> scripts/.env
       - name: Add main URL   
-        run:  echo "MAIN_URL:${{ secrets.MAIN_URL }}" >> scripts/.env
+        run:  echo "MAIN_URL=${{ secrets.MAIN_URL }}" >> scripts/.env
       - name: Add API Version 
-        run:  echo "API_VERSION:${{ secrets.API_VERSION }}" >> scripts/.env
+        run:  echo "API_VERSION=${{ secrets.API_VERSION }}" >> scripts/.env
       - name: Add Base URL 
-        run:  echo "BASE_URL:$${MAIN_URL}/${API_VERSION}" >> scripts/.env
+        run:  echo "BASE_URL=${MAIN_URL}/${API_VERSION}" >> scripts/.env
       - name: Add Market Slug        
-        run: echo "MARKET_SLUG:${{ secrets.MARKET_SLUG }}" >> scripts/.env
+        run: echo "MARKET_SLUG=${{ secrets.MARKET_SLUG }}" >> scripts/.env
       - name: Add User Agent
-        run: echo "USER_AGENT_PRODUCT:${{ secrets.USER_AGENT_PRODUCT }}" >> scripts/.env
+        run: echo "USER_AGENT_PRODUCT=${{ secrets.USER_AGENT_PRODUCT }}" >> scripts/.env
       - name: Add Internal IP 
-        run: echo "INTERNAL_TCP_SERVER_PORT:${{ secrets.INTERNAL_TCP_SERVER_PORT }}" >> scripts/.env
+        run: echo "INTERNAL_TCP_SERVER_PORT=${{ secrets.INTERNAL_TCP_SERVER_PORT }}" >> scripts/.env
       - name: Add Display       
-        run:  echo "DISPLAY:${{ secrets.DISPLAY }}" >> scripts/.env
+        run:  echo "DISPLAY=${{ secrets.DISPLAY }}" >> scripts/.env
       - name: Add Port         
-        run: echo "PORT:${{ secrets.PORT }}" >> scripts/.env
+        run: echo "PORT=${{ secrets.PORT }}" >> scripts/.env
       - name: Add Sentry DSN       
-        run: echo "SENTRY_DSN:${{ secrets.SENTRY_DSN }}" >> scripts/.env
+        run: echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> scripts/.env
       - name: Add Default External        
-        run: echo "DEFAULT_EXTERNAL_TCP_CUES_PORT:${{ secrets.DEFAULT_EXTERNAL_TCP_CUES_PORT }}" >> scripts/.env
+        run: echo "DEFAULT_EXTERNAL_TCP_CUES_PORT=${{ secrets.DEFAULT_EXTERNAL_TCP_CUES_PORT }}" >> scripts/.env
       - name: echo .env
         run: cat scripts/.env
       - name: Run build
