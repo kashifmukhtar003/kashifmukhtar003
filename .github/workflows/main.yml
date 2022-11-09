@@ -40,7 +40,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "build-artifact"
+          filename: "build-artifact.zip"
           folderId: ${{ secrets.folderId }}
           name: "build-artifact" # optional string
           overwrite: "true" # optional boolean
