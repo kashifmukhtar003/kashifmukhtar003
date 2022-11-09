@@ -36,3 +36,15 @@ jobs:
         with:
           name: build-artifacts
           path: build/app/release-builds/installers
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.credentials }}
+          filename: "build-artifact"
+          folderId: ${{ secrets.folderId }}
+          name: "build-artifact" # optional string
+          overwrite: "true" # optional boolean
+      - name: Make Directory Structure
+        run: |
+          mkdir -p w/x/y
+          date +%s > w/x/y/z    
