@@ -31,28 +31,8 @@ jobs:
         run:  npm run build:linux
       - name: Package
         run: npm run package:linux 
-      - name: Delete Old Artifacts
-        uses: actions/github-script@v6
-        id: artifact
-        with:
-          script: |
-            const res = await github.rest.actions.listArtifactsForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-
-            res.data.artifacts
-              .filter(({ name }) => name === 'build-artifacts')
-              .forEach(({ id }) => {
-                github.rest.actions.deleteArtifact({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  artifact_id: id,
-                })
-              })  
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: build/app/release-builds/installers
-          retention-days: 2
