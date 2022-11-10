@@ -37,8 +37,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: Download 
+          path: build/app/release-builds/installers
       - uses: actions/download-artifact@v2
         with:
           name: my-artifact
-          path: Download
+          run: cp build/app/release-builds/installers/* Download
