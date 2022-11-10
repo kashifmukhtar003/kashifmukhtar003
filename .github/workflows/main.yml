@@ -35,10 +35,5 @@ jobs:
         run: npm run package:linux 
       - name: upload build artifacts
         uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: build/app/release-builds/installers
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-artifact
-          run: docker cp build-artifact:/home/runner/work/kashifmukhtar003/kashifmukhtar003/build/app/release-builds/installers/dchp_0.0.1_amd64.deb ./build
+      - run: docker cp build-artifact:/home/runner/work/kashifmukhtar003/kashifmukhtar003/build/app/release-builds/installers/dchp_0.0.1_amd64.deb ./build
+     
