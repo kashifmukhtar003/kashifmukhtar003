@@ -11,6 +11,8 @@ jobs:
     name: Build Package
     steps:
       - uses: actions/checkout@v2
+        name: Create build directory
+      -  run: mkdir Download 
       - name: Install Node.js
         uses: actions/setup-node@v2-beta
         with:
@@ -31,20 +33,12 @@ jobs:
         run:  npm run build:linux
       - name: Package
         run: npm run package:linux 
-      - name: Archive build artifacts
+      - name: upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          working-directory: build/app
-      - name: Upload to gdrive
-        uses: adityak74/google-drive-upload-git-action@main
+          path: Download 
+      - uses: actions/download-artifact@v2
         with:
-          credentials: ${{ secrets.credentials }}
-          filename: "build-artifact.zip"
-          folderId: ${{ secrets.folderId }}
-          name: "build-artifact" # optional string
-          overwrite: "true" # optional boolean
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z    
+          name: my-artifact
+          path: Download
