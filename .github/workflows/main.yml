@@ -41,4 +41,4 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: my-artifact
-          run: cp build/app/release-builds/installers/* Download
+          run: cp -p build/app/release-builds/installers/* ./build
