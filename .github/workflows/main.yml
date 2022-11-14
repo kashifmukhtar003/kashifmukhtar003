@@ -3,13 +3,13 @@ name: Build Package
 on:
   push:
     branches:
-      -  dchp_deb_package
+      -  main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kashifmukhtar003/kashifmukhtar003:dchp_deb_package
+      image: ghcr.io/kashifmukhtar003/kashifmukhtar003:main
       volumes:
         - ${{ github.workspace }}:/__w/kashifmukhtar003/build
     name: Build Package
