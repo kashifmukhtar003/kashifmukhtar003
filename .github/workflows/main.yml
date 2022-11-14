@@ -18,7 +18,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2-beta
         with:
-          node-version: 16
+          node-version: 18
       - name: Setup packages
         run: sh scripts/install.sh 
       - name: Build dchp deb package in container
