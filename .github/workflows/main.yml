@@ -3,20 +3,37 @@ name: Build Package
 on:
   push:
     branches:
-      - main
+      -  dchp_deb_package
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kashifmukhtar003/kashifmukhtar003:dchp_deb_package
+      volumes:
+        - ${{ github.workspace }}:/__w/kashifmukhtar003/build
     name: Build Package
     steps:
       - uses: actions/checkout@v2
-        name: Create build directory
-      -  run: mkdir Download 
       - name: Install Node.js
         uses: actions/setup-node@v2-beta
         with:
           node-version: 16
-      - name: Build-Artifact
-        run: sh scripts/install.sh
+      - name: Setup packages
+        run: sh scripts/install.sh 
+      - name: Build dchp deb package in container
+        run: |
+          chmod +x scripts/build.sh
+          sh scripts/build.sh
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            *.deb
+            *.dsc
+            *.changes
+            build-artifacts
+            dchp_0.0.1_amd64.deb.tar.gz
+      
       
