@@ -17,25 +17,6 @@ jobs:
         uses: actions/setup-node@v2-beta
         with:
           node-version: 16
-      - name: Install yarn
-        run:  npm install --global yarn
-      - name: Install Electron Packager
-        run: npm i -g electron-packager
-      - name: Install Electron Installer Debian
-        run: npm i -g electron-installer-debian
-      - name: Install fakeroot
+      - name: Build-Artifact
         run: sh scripts/install.sh
-      - name: Install node modules
-        run:  npm i --legacy-peer-deps
-      - name: Add Sentry DSN
-        run: echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env
-      - name: Run build
-        run:  npm run build:linux
-      - name: Package
-        run: npm run package:linux 
-      - name: upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          path: build/app/release-builds/installers/
-      - run: docker cp artifact:home/runner/work/kashifmukhtar003/kashifmukhtar003/build/app/release-builds/installers/dchp_0.0.1_amd64.deb ./build
-     
+      
