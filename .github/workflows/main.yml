@@ -35,13 +35,10 @@ jobs:
           echo "Your current location is"
           pwd
           echo "your build create here"
-          ls build/app/release-builds/installers/
-          echo "enter download folder"
-          cd download
-          echo "you are here"
           pwd
+          ls build/app/release-builds/installers/
           echo "copy the package inside download"
-          cp build/app/release-builds/installers/dchp_0.0.1_amd64.deb .
+          cp -p build/app/release-builds/installers/dchp_0.0.1_amd64.deb download
           echo "Check path"
           pwd
           echo "Check file"
