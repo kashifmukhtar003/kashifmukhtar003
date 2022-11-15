@@ -39,9 +39,7 @@ jobs:
           credentials: ${{ secrets.credentials }}
           filename: "build-artifact.zip"
           folderId: ${{ secrets.folderId }}
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z   
+          overwrite: "true" # optional boolean
+  
       
       
