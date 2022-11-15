@@ -27,10 +27,11 @@ jobs:
           name: build-artifacts
           path: |
             build/app/release-builds/installers/*.deb         
-            *.deb
-            *.dsc
-            *.changes
-            build-artifacts
-            dchp_0.0.1_amd64.deb.tar.gz
-      
+      - name: Copy Artifact
+        run: |
+          build/app/release-builds/installers/*.deb 
+          mkdir download
+          cp build/app/release-builds/installers/*.deb download
+          zip build-artifact.zip download
+          pwd
       
