@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "Create Folder for Download"
           mkdir download  
-          ls -l
+          ls -l build/app/release-builds/installers/
 
 
   
