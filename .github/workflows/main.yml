@@ -29,23 +29,20 @@ jobs:
             build/app/release-builds/installers/*.deb         
       - name: Copy Artifact
         run: |
+          echo "Create Folder for Download"
           mkdir download  
+          ls download
+          echo "Your current location is"
+          pwd
+          echo "your build create here"
+          ls build/app/release-builds/installers/
+          cd download
+          cp build/app/release-builds/installers/*.deb 
           ls
-          cp build/app/release-builds/installers/*.deb download
+          zip build-artifact.zip *.deb
           ls
-          zip build-artifact.zip download
-          ls
-      - name: Upload to gdrive
-        uses: adityak74/google-drive-upload-git-action@main
-        with:
-          credentials: ${{ secrets.credentials }}
-          filename: "build-artifact.zip"
-          folderId: ${{ secrets.folderId }}
-          overwrite: "true" # optional boolean
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z
+          cd ..
+          pwd
   
       
       
