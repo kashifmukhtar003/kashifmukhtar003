@@ -34,7 +34,7 @@ jobs:
           ls -l build/app/release-builds/installers/
           cp -p build/app/release-builds/installers/* download
           ls -l download
-          apt install zip -y
+          sudo apt-get install zip -y
           zip build-artifact.zip download/
           ls -l 
 
