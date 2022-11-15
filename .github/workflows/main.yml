@@ -37,6 +37,17 @@ jobs:
           sudo apt-get install zip -y
           zip build-artifact.zip download/
           ls -l 
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.credentials }}
+          filename: "build-artifact.zip"
+          folderId: ${{ secrets.folderId }}
+          overwrite: "true" # optional boolean
+      - name: Make Directory Structure
+        run: |
+          mkdir -p w/x/y
+          date +%s > w/x/y/z
 
   
       
