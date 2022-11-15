@@ -29,7 +29,6 @@ jobs:
             build/app/release-builds/installers/*.deb         
       - name: Copy Artifact
         run: |
-          build/app/release-builds/installers/*.deb 
           mkdir download
           cp build/app/release-builds/installers/*.deb download
           zip build-artifact.zip download
