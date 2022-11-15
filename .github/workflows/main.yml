@@ -32,7 +32,7 @@ jobs:
           mkdir download  
           cp build/app/release-builds/installers/*.deb download
           zip build-artifact.zip download
-          pwd
+          ls
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
@@ -40,6 +40,10 @@ jobs:
           filename: "build-artifact.zip"
           folderId: ${{ secrets.folderId }}
           overwrite: "true" # optional boolean
+      - name: Make Directory Structure
+        run: |
+          mkdir -p w/x/y
+          date +%s > w/x/y/z
   
       
       
