@@ -26,7 +26,7 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            build/app/release-builds/installers/*.deb         
+            build/app/release-builds/installers/         
       - name: Copy Artifact
         run: |
           echo "Create Folder for Download"
@@ -36,12 +36,23 @@ jobs:
           pwd
           echo "your build create here"
           ls build/app/release-builds/installers/
+          echo "enter download folder"
           cd download
-          cp build/app/release-builds/installers/*.deb 
+          echo "you are here"
+          pwd
+          echo "copy the package inside download"
+          cp build/app/release-builds/installers/dchp_0.0.1_amd64.deb .
+          echo "Check path"
+          pwd
+          echo "Check file"
+          ls -l
+          echo "Archive Package"
+          zip build-artifact.zip dchp_0.0.1_amd64.deb
+          echo "check zip file"
           ls
-          zip build-artifact.zip *.deb
-          ls
+          echo "Complted - Outside"
           cd ..
+          echo "Final path"
           pwd
   
       
