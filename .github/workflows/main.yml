@@ -31,22 +31,8 @@ jobs:
         run: |
           echo "Create Folder for Download"
           mkdir download  
-          ls download
-          echo "Your current location is"
-          pwd
-          echo "your build create here"
-          pwd
-          ls build/app/release-builds/installers/
-          echo "copy the package inside download"
-          cp -p dchp_0.0.1_amd64.deb download
-          echo "Check path"
-          pwd
-          echo "Check file"
           ls -l
-          echo "Archive Package"
-          zip build-artifact.zip dchp_0.0.1_amd64.deb
-          echo "check zip file"
-          ls
+
 
   
       
