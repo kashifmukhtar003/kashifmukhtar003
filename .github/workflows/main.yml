@@ -41,7 +41,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "build-artifact.zip"
+          filename: "build/app/release-builds/installers/*"
           folderId: ${{ secrets.folderId }}
           overwrite: "true" # optional boolean
       - name: Make Directory Structure
