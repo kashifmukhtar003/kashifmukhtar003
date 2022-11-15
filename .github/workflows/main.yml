@@ -30,7 +30,9 @@ jobs:
       - name: Copy Artifact
         run: |
           mkdir download  
+          ls
           cp build/app/release-builds/installers/*.deb download
+          ls
           zip build-artifact.zip download
           ls
       - name: Upload to gdrive
