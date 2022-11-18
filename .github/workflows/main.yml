@@ -41,7 +41,7 @@ jobs:
       - id: "upload-files"
         uses: "google-github-actions/upload-cloud-storage@v0"
         with:
-          path: "uild/app/release-builds/installers"
+          path: "build/app/release-builds/installers"
           destination: "gh-actions/${{ github.repository }}/develop/${{ github.sha }}"
           glob: "*.deb"
           parent: false
