@@ -21,12 +21,6 @@ jobs:
         run: |
           chmod +x scripts/build.sh
           sh scripts/build.sh
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: |
-            build/app/release-builds/installers/         
       - name: Copy Artifact
         run: |
           echo "Create Folder for Download"
@@ -37,6 +31,12 @@ jobs:
           sudo apt-get install zip -y
           zip build-artifact.zip download/
           ls -l 
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            build/app/release-builds/installers/         
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
