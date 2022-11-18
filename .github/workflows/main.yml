@@ -6,6 +6,7 @@ on:
   
 
 jobs:
+  
   build-Debian-Package:
     name: Build DCHP Debian package 
     runs-on: ubuntu-latest
@@ -42,7 +43,7 @@ jobs:
         uses: "google-github-actions/upload-cloud-storage@v0"
         with:
           path: "build/app/release-builds/installers"
-          destination: "gh-actions/${{ github.repository }}/develop/${{ github.sha }}"
+          destination: "debian_package/${{ github.repository }}/develop/${{ github.sha }}"
           glob: "*.deb"
           parent: false
 
