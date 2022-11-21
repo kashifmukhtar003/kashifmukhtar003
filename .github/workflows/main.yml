@@ -37,8 +37,8 @@ jobs:
           chmod +x scripts/build.sh
           sh scripts/build.sh
 
-      - id: "auth"
-        name: 'Authenticate to Google Cloud'
-        uses: google-github-actions/auth@v0.4.0
+      - name: Auth GCP Service Account
+        uses: google-github-actions/auth@v0
         with:
-         credentials_json: ${{ secrets.CREDENTIALS }}
+          credentials_json: ${{ secrets.CREDENTIALS }}
+          cleanup_credentials: false
