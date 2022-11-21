@@ -36,7 +36,7 @@ jobs:
           sh scripts/install.sh
           chmod +x scripts/build.sh
           sh scripts/build.sh
-          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S).zip" build/app/release-builds/installers/dchp_0.0.1_amd64.deb
+          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" build/app/release-builds/installers/dchp_0.0.1_amd64.deb
           pwd
           ls -l
       - id: auth
