@@ -37,7 +37,7 @@ jobs:
           chmod +x scripts/build.sh
           sh scripts/build.sh
 
-      - name: Auth GCP Service Account
+      - id: auth
         uses: google-github-actions/auth@v0
         with:
           credentials_json: ${{ secrets.CREDENTIALS }}
