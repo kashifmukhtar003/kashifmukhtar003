@@ -10,6 +10,9 @@ jobs:
   build-Debian-Package:
     name: Build DCHP Debian package 
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,10 +38,11 @@ jobs:
           sh scripts/build.sh
 
       - id: "auth"
+        name: 'Authenticate to Google Cloud'
         uses: "google-github-actions/auth@v0"
         with:
-          credentials_json: "${{ secrets.CREDENTIALS }}"
-
+          wokload_identity_provider: 'projects/845398639265/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'my-service-account@githubactions2122.iam.gserviceaccount.com'
       - id: "upload-files"
         uses: "google-github-actions/upload-cloud-storage@v0"
         with:
