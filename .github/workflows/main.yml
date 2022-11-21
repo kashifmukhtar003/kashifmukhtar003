@@ -41,23 +41,4 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: "google-github-actions/auth@v0"
         with:
-          wokload_identity_provider: 'projects/1007661551724/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'githubactions@advance-river-205619.iam.gserviceaccount.com'
-      - id: "upload-files"
-        uses: "google-github-actions/upload-cloud-storage@v0"
-        with:
-          path: "build/app/release-builds/installers"
-          destination: "debian_package/${{ github.repository }}/develop/${{ github.sha }}"
-          glob: "*.deb"
-          parent: false
-
-      - name: Summary
-        run: |
-          FILES=($(echo ${{ env.files }} | tr ',' ' ')) # Save to array after replacing , with spaces
-          echo $FILES
-          echo "### Generated Debian Package:" >> $GITHUB_STEP_SUMMARY
-          for file in "${FILES[@]}" ; do
-            echo "[${file##*/}](https://storage.cloud.google.com/gh-actions/$file)" >> $GITHUB_STEP_SUMMARY
-          done
-        env:
-          files: "${{ steps.upload-files.outputs.uploaded }}"
+         credentials_json: ${{ secrets.credentials }}
