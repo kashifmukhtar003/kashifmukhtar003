@@ -42,6 +42,7 @@ jobs:
           echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env
           cat .env
       - name: Building Debian Package
+        run: |
           chmod +x scripts/build.sh
           sh scripts/build.sh
           zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" $Package_Path
