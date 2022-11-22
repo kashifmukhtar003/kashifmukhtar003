@@ -3,7 +3,8 @@ name: Build Debian Package
 on:
   push:
     branches: ["main"]
-  
+env:
+ Package_Path: build/app/release-builds/installers/dchp_0.0.1_amd64.deb
 
 jobs:
   
@@ -25,20 +26,25 @@ jobs:
         uses: actions/cache@v3
         env:
           cache-name: cache-debian-package
-          SOURCE_ISO: "build/app/release-builds/installers/dchp_0.0.1_amd64.deb"
+          SOURCE_ISO: $Package_Path
         with:
           path: downloads
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ env.SOURCE_ISO_URL }}
 
-      - name: Build Debian Package
+      - name: Install dependences for Debian Package
         run: |
+          mkdir downloads
           chmod +x scripts/install.sh
           sh scripts/install.sh
+      - name: Add DSN URL
+        run: |
+          cat .env
+          echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env
+          cat .env
+      - name: Building Debian Package
           chmod +x scripts/build.sh
           sh scripts/build.sh
-          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" build/app/release-builds/installers/dchp_0.0.1_amd64.deb
-          pwd
-          ls -l
+          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" $Package_Path
       - id: auth
         uses: google-github-actions/auth@v0
         with:
