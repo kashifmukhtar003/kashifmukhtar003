@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
 env:
+ Package_Path: build/app/release-builds/installers
  Package_Name: dchp_0.0.1_amd64.deb
 
 jobs:
@@ -42,7 +43,7 @@ jobs:
         run: |
           chmod +x scripts/build.sh
           sh scripts/build.sh
-          mv $Package_Path .
+          mv $Package_Path/$Package_Name .
           zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" "$Package_Name"
       - id: auth
         uses: google-github-actions/auth@v0
