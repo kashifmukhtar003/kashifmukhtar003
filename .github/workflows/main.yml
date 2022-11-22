@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
 env:
- Package_Path: build/app/release-builds/installers/dchp_0.0.1_amd64.deb
+ Package_Name: dchp_0.0.1_amd64.deb
 
 jobs:
   
@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v3
         env:
           cache-name: cache-debian-package
-          SOURCE_ISO_URL: $Package_Path
+          SOURCE_ISO_URL: "$Package_Name"
         with:
           path: downloads
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ env.SOURCE_ISO_URL }}
@@ -42,7 +42,8 @@ jobs:
         run: |
           chmod +x scripts/build.sh
           sh scripts/build.sh
-          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" $Package_Path
+          mv $Package_Path .
+          zip -r "build.artifact-$(date +"%Y-%m-%d %H-%M-%S").zip" "$Package_Name"
       - id: auth
         uses: google-github-actions/auth@v0
         with:
